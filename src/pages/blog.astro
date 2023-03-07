@@ -3,7 +3,7 @@ import Footer from "../components/Footer.astro";
 import Navigation from "../components/Navigation.astro";
 import "../styles/global.css";
 
-const pageTitle = "Home";
+const pageTitle = "Ze Blog";
 ---
 
 <html lang="en">
@@ -15,9 +15,11 @@ const pageTitle = "Home";
     <title>My awesome Astro Blog</title>
   </head>
   <body>
-    <Navigation />
+    <a href="/">Home</a>
+    <a href="/about/">About</a>
+    <a href="/blog/">Blog</a>
 
-    <h1>My Astro {pageTitle}</h1>
+    <h1>{pageTitle}</h1>
     <Footer />
   </body>
 </html>
