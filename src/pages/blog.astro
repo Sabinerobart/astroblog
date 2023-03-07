@@ -15,11 +15,13 @@ const pageTitle = "Ze Blog";
     <title>My awesome Astro Blog</title>
   </head>
   <body>
-    <a href="/">Home</a>
-    <a href="/about/">About</a>
-    <a href="/blog/">Blog</a>
+    <Navigation />
 
     <h1>{pageTitle}</h1>
     <Footer />
+
+    <script>
+      import "../scripts/menu.ts";
+    </script>
   </body>
 </html>
