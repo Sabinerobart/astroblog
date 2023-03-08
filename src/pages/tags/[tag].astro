@@ -1,0 +1,39 @@
+---
+import BlogPostNav from "../../components/BlogPostNav.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Frontmatter } from "../../types";
+
+export async function getStaticPaths() {
+  // Get all posts
+  const allPosts = await Astro.glob<Frontmatter>("../posts/*.md");
+
+  const uniqueTags = [
+    ...new Set(allPosts.map((post) => post.frontmatter.tags).flat()),
+  ];
+
+  return uniqueTags.map((tag) => {
+    const filteredPosts = allPosts.filter((post) =>
+      post.frontmatter.tags.includes(tag)
+    );
+    return {
+      params: { tag },
+      props: { posts: filteredPosts },
+    };
+  });
+}
+
+// Get url param
+const { tag } = Astro.params;
+
+// Get posts with tag passed as url param
+const { posts } = Astro.props;
+---
+
+<BaseLayout pageTitle={tag}>
+  <p>Posts tagged with <code>{tag}</code></p>
+  {
+    posts.map((post: { frontmatter: Frontmatter }) => (
+      <BlogPostNav url={post.frontmatter.url} title={post.frontmatter.title} />
+    ))
+  }
+</BaseLayout>

@@ -1,9 +1,10 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import BlogPostNav from "../components/BlogPostNav.astro";
+import { Frontmatter } from "../types";
 import "../styles/global.css";
 
-const allPosts = await Astro.glob("../pages/posts/*.md");
+const allPosts = await Astro.glob<Frontmatter>("../pages/posts/*.md");
 
 const pageTitle = "Ze Blog";
 ---
