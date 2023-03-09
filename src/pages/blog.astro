@@ -1,12 +1,21 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import BlogPostNav from "../components/BlogPostNav.astro";
+import { Frontmatter } from "../types";
 import "../styles/global.css";
+
+const allPosts = await Astro.glob<Frontmatter>("../pages/posts/*.md");
 
 const pageTitle = "Ze Blog";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
   <ul>
-    <li><a href="/posts/post-1/">Post 1</a></li>
+    {
+      allPosts.map((eachPost) => {
+        const post = eachPost.frontmatter;
+        return <BlogPostNav url={post.url} title={post.title} />;
+      })
+    }
   </ul>
 </BaseLayout>
