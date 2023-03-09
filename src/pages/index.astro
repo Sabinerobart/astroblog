@@ -1,8 +1,17 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Greeting from "../components/Greeting";
 import "../styles/global.css";
 
 const pageTitle = "Home";
 ---
 
-<BaseLayout pageTitle={pageTitle} />
+<BaseLayout pageTitle={pageTitle}>
+  <Greeting client:load messages={["Hej", "Hallo", "Hola", "Habari"]} />
+
+  <h2>Astro docs</h2>
+  <a
+    href="https://docs.astro.build/en/reference/directives-reference/#common-directives"
+    target="_blank">Directives</a
+  >
+</BaseLayout>
